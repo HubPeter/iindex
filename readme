@@ -1,0 +1,50 @@
+data files:
+	doc.txt: 
+		document id  -- document  path 
+	wd.txt:  
+		word  --  document id
+	words.txt: 
+		word id -- word
+	index.txt:  
+		word id -- set of document id
+	widdid.txt:  
+		word id -- document id
+	path.txt: 
+		path to be indexed
+	
+	Hint: this if for you to know this code easily, if you don't want 
+	to see the detail, just see <0 <1 <2 directly.
+
+code moudles:
+
+parse.py:
+	get word-docid list to the wd.txt
+	write doc-docid to the doc.txt
+invert.py:
+	
+0. Config your local search.
+	Edit path.txt.
+	e.g. if you want 
+		/usr/local/include
+	to be indexed, just add the path.
+
+
+1. How to install?
+	1:Parse your documents:
+	./parse.py		
+	
+
+	>Build inverted index
+	./build.py
+	
+
+	>Use your search engine
+	./search.py
+
+2. How to remove?
+	>Delete files occured in <data files> and <code moudles>
+		Hint: there is nothing with your own file.
+
+
+$. Welcome to email me with or without problem:
+	tecnodechina@gmail.com	
