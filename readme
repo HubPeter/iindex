@@ -1,3 +1,6 @@
+Local file search program. Create invert index with your lcoal files.
+And search files with key words quickly.
+
 data files:
 	doc.txt: 
 		document id  -- document  path 

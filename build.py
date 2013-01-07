@@ -21,34 +21,46 @@ def genWords():
 	get all words from wd.txt
 	replace word with wid and write them back to wd.txt
 	'''
+	print 'Begin to get all words.......'
 	#read all word-docid from wd.txt
 	sWDFile = 'wd.txt'
 	lWD = []
 	fWDFile = open(sWDFile, 'r')
+	print 'Load wd.txt....'
 	for line in fWDFile.readlines():
 		lWD.append([ line.split()[0] ,int(line.split()[1])])
 	fWDFile.close()
 	#get all words and replace word with wid
 	lWords = []
+	print 'Get words...'
+	process = '#'
+	i = 0
+	length = len(lWD)
 	for item in lWD:
 		# hello = 12
 		# word = id
+		print str(i)+' of '+str(length)+'\r',
+		i+=1
+		sys.stdout.flush()
 		if item[0] not in lWords:
 			lWords.append( item[0] )
 		item[0] = lWords.index(item[0])
 
 	#write wid-docid back
 	fWDFile = open('widdid.txt', 'w')
+	print 'Sort....'
 	lWD.sort()
+	print 'Saving result to wd.txt...'
 	for item in lWD:
 		print>>fWDFile, str(item[0])+' '+str(item[1])
 	fWDFile.close()
 	#save words in words.txt
+	print 'Saving all words to words.txt...'
 	fWords = open('words.txt', 'w')
 	for i in range(len(lWords)):
 		print>>fWords, str(i)+' '+lWords[i]
 	fWords.close()
-	
+	print 'Get words finished.'
 def invert():
 	'''
 	read all wid-did and sort
@@ -56,13 +68,17 @@ def invert():
 	'''
 	sWDFile = 'widdid.txt'
 	lWD = []
+	print 'Begin create invert index....'
 	fWDFile = open(sWDFile, 'r')
+	print 'Load files.....'
 	for line in fWDFile.readlines():
 		lWD.append( [ int(i) for i in line.split()] )
 	fWDFile.close()
 	#sort
+	print 'Sort wordid-docid items....'
 	lWD.sort( )
 	#generate invert index
+	print 'Creating invert index.....'
 	nBegin = 0
 	lInvert = []
 	i = 0
@@ -80,6 +96,7 @@ def invert():
 		nBegin = i
 
 	#write 
+	print 'Saving invert index to index.txt...'
 	sInvert = 'index.txt'
 	fInvert = open(sInvert, 'w')
 	for item in lInvert:
@@ -87,78 +104,9 @@ def invert():
 			fInvert.write('%s '%item[i])
 		fInvert.write('\n')
 	fInvert.close()
+	print 'All succeed!'
 
-def load():
-	'''
-	load index, words and docs
-	'''
-	sIndex = 'index.txt'
-	sWord = 'words.txt'
-	sDoc = 'doc.txt'
-	lIndex = []
-	#load index
-	fIndex = open(sIndex, 'r')
-	for line in fIndex.readlines():
-		lIndex.append( [int(i) for i in line.split()] )
-	fIndex.close()
-	#load words
-	lWord = []
-	fWord = open(sWord, 'r')
-	for line in fWord.readlines():
-		lWord.append([ int(line.split()[0]), line.split()[1] ])
-	fWord.close()
-	#load docs
-	lDoc = []
-	fDoc = open(sDoc, 'r')
-	for line in fDoc.readlines():
-		lDoc.append([ int(line.split()[0]), line.split()[1] ])
-	fDoc.close()
-	return (lIndex, lWord, lDoc)
 
 if __name__=='__main__':
-	#genWords()
-	#invert()
-	
-	#load inde
-	print 'Loading index...'
-	lIndex, lWord, lDoc = load()
-	print 'I am ready.'
-	while True:
-		key = raw_input('Key word:')
-		print 'Your key word is : '+key
-		print 'Documents matched is :'
-		#get word id
-		wid = -1
-		for i in range(len(lWord)):
-			if key==lWord[i][1]:
-				wid = lWord[i][0]
-		#find document id
-		docs = []
-		if wid==-1:
-			print 'No matched'
-			#sys.exit()
-			continue
-		for i in range(len(lIndex)):
-			if lIndex[i][0]==wid:
-				docs = lIndex[i][1:]
-		if len(docs)==0:
-			print 'No match.'
-			#sys.exit()
-			continue
-		#find document path
-		for item in docs:
-			for i in range(len(lDoc)):
-				if lDoc[i][0]==item:
-					print lDoc[i][1]
-		print '------------OK-------------------'
-		#show path
-		
-
-	
-
-
-	#load word
-	#load docs
-
-
-
+	genWords()
+	invert()
