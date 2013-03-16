@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+from parse import parse
 
 def getDocMap():
 	'''
@@ -39,7 +40,7 @@ def genWords():
 	for item in lWD:
 		# hello = 12
 		# word = id
-		print str(i)+' of '+str(length)+'\r',
+		#print str(i)+' of '+str(length)+'\r',
 		i+=1
 		sys.stdout.flush()
 		if item[0] not in lWords:
@@ -106,7 +107,8 @@ def invert():
 	fInvert.close()
 	print 'All succeed!'
 
-
-if __name__=='__main__':
+def build():
+	#print 'build'
+	parse()
 	genWords()
 	invert()

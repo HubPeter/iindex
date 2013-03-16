@@ -28,17 +28,19 @@ def load():
 	fDoc.close()
 	return (lIndex, lWord, lDoc)
 
-if __name__=='__main__':
-
+def search():
 	#load index
 	print 'Loading index...'
 	lIndex, lWord, lDoc = load()
 	print 'I am ready.'
 	while True:
 		key = raw_input('Key word:')
+		#get hash value of key
 		print 'Your key word is : '+key
 		print 'Documents matched is :'
 		#get word id
+		# and get hash value
+		# to get wid
 		wid = -1
 		for i in range(len(lWord)):
 			if key==lWord[i][1]:

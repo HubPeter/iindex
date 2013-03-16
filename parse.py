@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 from os import walk
+import re
+
+def getwords(longStr):
+	pattern = re.compile(r'[_\w\d][\w\d_]*')
+	words = re.findall(pattern, longStr)
+	return words
+
+if __name__=='__main__':
+	string = 'he990llo world i _love you_'	
+	words = getwords(string)
+	print words
 
 def parse():
 	'''
@@ -27,8 +38,13 @@ def parse():
 				#get items of word-docid
 				nCurDocId = len( lAllDocs )-1#0 based index
 				content =  open(sCurDocName ,'r').read()
+				
 				#get words in current file
-				lWIDDId = content.split()
+				#lWIDDId = content.split()
+				lWIDDId = getwords( content )
+				
+				# replae split with new method
+				
 				#write lWID_DId into temp_index_file
 				for item in lWIDDId:
 					print>>fWD, item+" "+str(nCurDocId)
@@ -36,5 +52,3 @@ def parse():
 	fDocs.close()
 	fWD.close()
 
-if __name__=='__main__':
-	parse()

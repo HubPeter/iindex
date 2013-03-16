@@ -2,6 +2,8 @@ Local file search program. Create invert index with your lcoal files.
 And search files with key words quickly.
 
 data files:
+	note:
+		these files are nothing about using, it is for programmers
 	doc.txt: 
 		document id  -- document  path 
 	wd.txt:  
@@ -22,14 +24,14 @@ data files:
 
 code moudles:
 
-parse.py:
-	get word-docid list to the wd.txt
-	write doc-docid to the doc.txt
+	parse.py:
+		get word-docid list to the wd.txt
+		write doc-docid to the doc.txt
 
-build.py:
-	build invert index and words
-key.py:
-	get hash value from words
+	build.py:
+		build invert index and words
+	key.py:
+		get hash value from words
 	
 	
 0. Config your local search.
@@ -39,24 +41,21 @@ key.py:
 	to be indexed, just add the path.
 
 
-1. How to install?
-	1:Parse your documents:
-	./parse.py		
+1. How to use?
+	>build invert index:
+		python llsearch.py build
 	
-
-	>Build inverted index
-	./build.py
-	
-	>Get key dictionary
-	./key.py
-
 	>Use your search engine
-	./search.py
+		python llearch.py search
+	
+	>For help
+		python llsearch.py help
+	
+	Ctrl-c to exit local search engine.
 
 2. How to remove?
 	>Delete files occured in <data files> and <code moudles>
 		Hint: there is nothing with your own file.
-
 
 $. Welcome to email me with or without problem:
 	tecnodechina@gmail.com	
